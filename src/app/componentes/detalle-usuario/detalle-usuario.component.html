@@ -1,0 +1,97 @@
+<div class="formulario">  
+       
+	
+
+	<div class="alert alert-success" *ngIf="status == 'exitoso'">
+        Has actualizado tu información correctamente =)
+    </div>
+    <!-- muestra mensaje si es fallido -->
+     <div class="alert alert-danger" *ngIf="status == 'error'">
+        No has actualizado tus datos =(
+    </div>
+     
+	<form #userEditForm="ngForm" (ngSubmit)="onSubmit()" class="col-lg-12">
+		<div class="panel panel-primary">
+       <div class="panel-heading">
+     <h3>{{titulo}}</h3>
+       </div>
+       <div class="panel-body">
+    <!--#nombre para angular y que es ngForm, al submit se efectua el metodo onsubmit 
+    se ingresa como parametro en onsubmit el registro, para poder resetearlo 
+    
+    -->
+    
+        
+         <div class="form-label-group" >
+              <input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="identity.name" class="form-control" placeholder="Nombre"
+              required/>
+              <label for="nombre" >Nombre</label>
+          </div>
+          <div class="form-label-group" >
+              <input type="text" name="surname" #surname="ngModel" [(ngModel)]="identity.surname" class="form-control" placeholder="Apellidos" required/>
+              <label for="surname" >Apellidos</label>
+          </div>
+         
+        <!--
+         <p>
+            <label>Correo electronico</label>	
+            <input type="email" name="email" #email="ngModel" [(ngModel)]="user.email" class="form-control" required/>
+            <span *ngIf="!email.valid && email.touched">
+                El correo es obligatorio
+            </span>
+        </p>
+        -->
+        <div class="form-label-group" >
+              <input type="text" name="correo" #correo="ngModel" [(ngModel)]="identity.mail" class="form-control" placeholder="Correo electrónico" required/>
+              <label for="correo" >Correo electrónico</label>
+          </div>
+       <div class="form-label-group" >
+              <input type="text" name="role" #role="ngModel" [(ngModel)]="identity.role" class="form-control" placeholder="Tipo" 
+              required/>
+              <label for="role" >Tipo</label>
+          </div>
+        
+        
+
+            <!--boton de submit, deshabilitado si el registerform no es valido 
+            <input type="password" name="pass" #pass="ngModel" [(ngModel)]="pass" class="form-control" placeholder="Contraseña" required />
+
+
+
+            -->
+            
+            <input type="submit" value="Modificar datos" class="btn btn-lg btn-primary btn-block" [disabled]="!userEditForm.form.valid" />
+       </div>
+		</div>
+            </form>
+          
+</div>
+
+  <div class="formulario">
+    <form #passUpdate="ngForm" (ngSubmit)="mandaCambio(passUpdate)" class="col-lg-12">
+      <div class="panel panel-primary">
+        <div class="panel-body">
+            <input (click) = "pideCambio()" class="btn btn-lg btn-primary btn-block" value="¿Cambia contraseña?" />
+            <p>
+              
+            <span *ngIf = cambiaPass>
+             <p>
+               <p>
+             <input type="password" name="password" #passsword="ngModel" [(ngModel)]="pass" class="form-control" placeholder="Contraseña" required />
+             </p>
+             <p>
+               <input type="password" name="password2" #password2="ngModel" [(ngModel)]="pass2" class="form-control" placeholder="Confirma Contraseña" required />
+             </p>
+ <div class="alert alert-danger" *ngIf=validaPass>
+               {{mensaje}}
+               
+             </div>
+            <input type="submit" (click) = "mandaCambio()" class="btn btn-lg btn-primary btn-block" value="Modifica contraseña" />
+            
+            </span>
+            </p>
+        </div>
+      </div>
+    </form>
+  
+  </div>

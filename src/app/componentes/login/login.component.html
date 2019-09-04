@@ -1,0 +1,41 @@
+<body class="text-center">
+ <form  #loginForm= "ngForm" (ngSubmit)="onSubmit(loginForm)" class="form-signin">
+      <div class="alert alert-success" *ngIf="status == 'success'">
+        Logeo exitoso
+    </div>
+    <!-- muestra mensaje si es fallido 
+    public_html/2/wp-content/uploads/CADE/img
+    <label for="inputEmail" class="sr-only">Usuario</label>
+    <input type="text" name="numero" #numero="ngModel" [(ngModel)]="usuario.mail" class="form-control" placeholder="Número de empleado" required />
+
+    <label for="inputPassword" class="sr-only">Contraseña</label>
+      
+      <input type="password" name="password" #password="ngModel" [(ngModel)]="usuario.password" class="form-control" placeholder="Contraseña" required />
+    -->
+     <div class="alert alert-danger" *ngIf="status == 'error'">
+        Logeo erroneo
+    </div>
+      <img class="logo" src="https://ipesamex.com/2/wp-content/uploads/CADE/img/CADE-LOG.png" alt="" width="900" height="100">
+      <h1 class="h3 mb-3 font-weight-normal">Bienvenido</h1>
+      
+      
+      
+
+      <div class="form-label-group" >
+              <input type="text" name="facturadas" #facturadas="ngModel" [(ngModel)]="usuario.mail" class="form-control" placeholder="Correo electrónico"/>
+              <label for="facturadas" >Correo electrónico</label>
+          </div>
+      
+
+      <div class="form-label-group" >
+              <input type="password" name="pass" #pass="ngModel" [(ngModel)]="usuario.password" class="form-control" placeholder="Contraseña"/>
+              <label for="pass" >Contraseña</label>
+          </div>
+
+      <div class="boton">
+      <input type="submit" value="Entrar" class="btn btn-lg btn-primary btn-block" />
+      </div>
+      <p class="mt-5 mb-3 text-muted">© 2018-2019</p>
+    </form>
+   
+</body>

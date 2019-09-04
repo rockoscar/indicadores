@@ -1,0 +1,257 @@
+<!--Inicia filtros -->
+<div class="conteiner filtros">
+  <div class="panel panel-success">
+    <div class="panel-heading">
+      <h3 class="panel-title">Filtros</h3>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-lg-2">
+          <div class="form-group">
+            <label>Fecha de inicio </label>
+            <input class="form-control" type="date" name="fecha" [(ngModel)]="fecha" placeholder="Fecha inicio">
+          </div>
+        </div>
+        <div class="col-lg-2">
+          <div class="form-group">
+            <label>Fecha de final </label>
+            <input class="form-control" type="date" name="fechaterm" [(ngModel)]="fechatermino" placeholder="Fecha termino">
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <p>
+          <h4><strong>La información que se muestra es el resultado promedio del año en curso. Para consultar un periodo específico utilice los filtros de fecha.</strong></h4>
+        </div>
+      </div>
+      <div class="row" *ngIf="identity.role == 'Admin' || this.identity.role == 'Direccion'">
+        <div class="col-lg-4">
+          <div class="form-group">
+            <label>Proceso</label>
+            <select class="form-control" name="proceso" #proceso="ngModel" [(ngModel)]=pro>                
+              <option *ngFor="let proceso of procesos">{{proceso}}</option>
+            </select>    
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <br>
+          <button class="btn btn-lg btn-danger" (click)="borraFiltros()" >Borra filtros</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Acaban filtros -->
+<div class="conteiner">
+  <!--Inicia panel de proceso -->
+  <div class="panel panel-primary" *ngIf="pro == 'Ventas' || pro == null">
+        <div class="panel-heading">
+          <h3 class="panel-title">Ventas </h3>
+        </div>
+      <div class="panel-body">
+        <app-dash-hijo *ngFor="let titulo of titulosV"
+        [titulo]=titulo
+        [fecha]=fecha
+        [fechatermino]=fechatermino
+        ></app-dash-hijo>
+      </div>
+  </div>
+  <!--Acaba panel de proceso  -->
+
+  <!--Inicia panel de proceso -->
+  <div class="panel panel-primary" *ngIf="pro == 'Desarrollo' || pro == null">
+        <div class="panel-heading">
+          <h3 class="panel-title">Desarrollo</h3>
+        </div>
+      <div class="panel-body">
+        <app-dash-hijo *ngFor="let titulo of titulosD"
+        [titulo]=titulo
+        [fecha]=fecha
+        [fechatermino]=fechatermino
+        ></app-dash-hijo>
+      </div>
+  </div>
+  <!--Acaba panel de proceso -->
+  <!--Inicia panel de proceso -->
+  <div class="panel panel-primary" *ngIf="pro == 'Compras' || pro == null">
+        <div class="panel-heading">
+          <h3 class="panel-title">Compras</h3>
+        </div>
+      <div class="panel-body">
+         <app-dash-hijo *ngFor="let titulo of titulosC"
+        [titulo]=titulo
+        [fecha]=fecha
+        [fechatermino]=fechatermino
+        ></app-dash-hijo>
+      </div>
+  </div>
+  <!--Acaba panel de proceso -->
+  <!--Inicia panel de proceso -->
+  <div class="panel panel-primary" *ngIf="pro == 'Almacén de materia prima' || pro == null">
+        <div class="panel-heading">
+          <h3 class="panel-title">Almacén de materia prima</h3>
+        </div>
+      <div class="panel-body">
+        <app-dash-hijo *ngFor="let titulo of titulosMP"
+        [titulo]=titulo
+        [fecha]=fecha
+        [fechatermino]=fechatermino
+        ></app-dash-hijo>
+      </div>
+  </div>
+  <!--Acaba panel de proceso -->
+  <!--Inicia panel de proceso -->
+  <div class="panel panel-primary" *ngIf="pro == 'Producción' || pro == null">
+        <div class="panel-heading">
+          <h3 class="panel-title">Producción</h3>
+        </div>
+      <div class="panel-body">
+        <app-dash-hijo *ngFor="let titulo of titulosP"
+        [titulo]=titulo
+        [fecha]=fecha
+        [fechatermino]=fechatermino
+        ></app-dash-hijo>
+      </div>
+  </div>
+  <!--Acaba panel de proceso -->
+  <!--Inicia panel de proceso -->
+  <div class="panel panel-primary" *ngIf="pro == 'Ingeniería de procesos y Mantenimiento' || pro == null">
+        <div class="panel-heading">
+          <h3 class="panel-title">Ingeniería de procesos y Mantenimiento</h3>
+        </div>
+      <div class="panel-body">
+        <app-dash-hijo *ngFor="let titulo of titulosIP"
+        [titulo]=titulo
+        [fecha]=fecha
+        [fechatermino]=fechatermino
+        ></app-dash-hijo>
+      </div>
+  </div>
+  <!--Acaba panel de proceso -->
+  <!--Inicia panel de proceso 
+  <div class="panel panel-primary" *ngIf="pro == 'Mantenimiento' || pro == null">
+        <div class="panel-heading">
+          <h3 class="panel-title">Mantenimiento</h3>
+        </div>
+      <div class="panel-body">
+        <app-dash-hijo *ngFor="let titulo of titulosM"
+        [titulo]=titulo
+        [fecha]=fecha
+        [fechatermino]=fechatermino
+        ></app-dash-hijo>
+      </div>
+  </div>
+  -->
+  <!--Acaba panel de proceso -->
+  <!--Inicia panel de proceso -->
+  <div class="panel panel-primary" *ngIf="pro == 'Control de calidad' || pro == null">
+        <div class="panel-heading">
+          <h3 class="panel-title">Control de calidad</h3>
+        </div>
+      <div class="panel-body">
+        <app-dash-hijo *ngFor="let titulo of titulosCC"
+        [titulo]=titulo
+        [fecha]=fecha
+        [fechatermino]=fechatermino
+        ></app-dash-hijo>
+      </div>
+  </div>
+  <!--Acaba panel de proceso -->
+  <!--Inicia panel de proceso -->
+  <div class="panel panel-primary" *ngIf="pro == 'Almacén de producto terminado' || pro == null">
+        <div class="panel-heading">
+          <h3 class="panel-title">Almacén de producto terminado</h3>
+        </div>
+      <div class="panel-body">
+        <app-dash-hijo *ngFor="let titulo of titulosPT"
+        [titulo]=titulo
+        [fecha]=fecha
+        [fechatermino]=fechatermino
+        ></app-dash-hijo>
+      </div>
+  </div>
+  <!--Acaba panel de proceso -->
+  <!--Inicia panel de proceso -->
+  <div class="panel panel-primary" *ngIf="pro == 'Embarques' || pro == null">
+        <div class="panel-heading">
+          <h3 class="panel-title">Embarques</h3>
+        </div>
+      <div class="panel-body">
+        <app-dash-hijo *ngFor="let titulo of titulosE"
+        [titulo]=titulo
+        [fecha]=fecha
+        [fechatermino]=fechatermino
+        ></app-dash-hijo>
+      </div>
+  </div>
+  <!--Acaba panel de proceso -->
+  <!--Inicia panel de proceso -->
+  <div class="panel panel-primary" *ngIf="pro == 'Contabilidad' || pro == null">
+        <div class="panel-heading">
+          <h3 class="panel-title">Contabilidad</h3>
+        </div>
+      <div class="panel-body">
+        <app-dash-hijo *ngFor="let titulo of titulosCN"
+        [titulo]=titulo
+        [fecha]=fecha
+        [fechatermino]=fechatermino
+        ></app-dash-hijo>
+      </div>
+  </div>
+  <!--Acaba panel de proceso -->
+  <!--Inicia panel de proceso -->
+  <div class="panel panel-primary" *ngIf="pro == 'Crédito y cobranza' || pro == null">
+        <div class="panel-heading">
+          <h3 class="panel-title">Crédito y cobranza</h3>
+        </div>
+      <div class="panel-body">
+        <app-dash-hijo *ngFor="let titulo of titulosCR"
+        [titulo]=titulo
+        [fecha]=fecha
+        [fechatermino]=fechatermino
+        ></app-dash-hijo>
+      </div>
+  </div>
+  <!--Acaba panel de proceso -->
+  <!--Inicia panel de proceso -->
+  <div class="panel panel-primary" *ngIf="pro == 'Tecnología de la información' || pro == null">
+        <div class="panel-heading">
+          <h3 class="panel-title">Tecnología de la información</h3>
+        </div>
+      <div class="panel-body"> 
+        <app-dash-hijo *ngFor="let titulo of titulosTI"
+        [titulo]=titulo
+        [fecha]=fecha
+        [fechatermino]=fechatermino
+        ></app-dash-hijo>
+      </div>
+  </div>
+  <!--Acaba panel de proceso -->
+  <!--Inicia panel de proceso -->
+  <div class="panel panel-primary" *ngIf="pro == 'Seguridad, Higiene y Medio Ambiente' || pro == null">
+        <div class="panel-heading">
+          <h3 class="panel-title">Seguridad, Higiene y Medio Ambiente</h3>
+        </div>
+      <div class="panel-body">
+        <app-dash-hijo *ngFor="let titulo of titulosSG"
+        [titulo]=titulo
+        [fecha]=fecha
+        [fechatermino]=fechatermino
+        ></app-dash-hijo>
+      </div>
+  </div>
+  <!--Acaba panel de proceso -->
+  <!--Inicia panel de proceso -->
+  <div class="panel panel-primary" *ngIf="pro == 'Recursos humanos' || pro == null">
+        <div class="panel-heading">
+          <h3 class="panel-title">Recursos humanos</h3>
+        </div>
+      <div class="panel-body">
+        <app-dash-hijo *ngFor="let titulo of titulosRH"
+        [titulo]=titulo
+        [fecha]=fecha
+        [fechatermino]=fechatermino
+        ></app-dash-hijo>
+      </div>
+  </div>
+  <!--Acaba panel de proceso -->
+</div>

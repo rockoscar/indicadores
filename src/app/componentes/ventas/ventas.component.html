@@ -1,0 +1,46 @@
+<div class="conteiner indi">
+  <form #indicadorForm="ngForm" (ngSubmit)="onSubmit(indicadorForm)" class="agregaform">
+    <div class="col col-lg-4" *ngFor="let indicador of indicadores">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">{{indicador.indi}}</h3>
+        </div>
+        <div class="panel-body">
+          <div class="form-label-group" *ngFor="let para of indicador.parametro">
+              <input type="number" name="facturadas" #facturadas="ngModel" [(ngModel)]=para.recibe class="form-control" placeholder={{para.solicita}} required/>
+              <label for="facturadas" >{{para.solicita}}</label>
+          </div>
+          <div class="form-label-group">
+              <input type="text" name="observacion" #observacion="ngModel" [(ngModel)]=indicador.observacion class="form-control" placeholder="Observación" required/>
+              <label for="observacion" >Observación</label>
+          </div>
+          <span *ngIf="indicador?.resultado <= indicador.rango[0].alerta && indicador?.resultado > 0">
+            <div class="progress">
+              <div class="progress-bar progress-bar-striped progress-bar-danger" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="10" 
+              [ngStyle]="{ 'width': indicador?.resultado + '%' }" >
+              {{ indicador?.resultado }} {{indicador.rango[0].unidad}}
+              </div>     
+            </div>
+          </span>
+          <span *ngIf="indicador?.resultado && indicador?.resultado >= indicador.rango[0].advertencia && indicador?.resultado < indicador.rango[0].exitoso">
+            <div class="progress">
+              <div class="progress-bar progress-bar-striped progress-bar-warning" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="10" 
+              [ngStyle]="{ 'width': indicador?.resultado + '%' }" >
+              {{ indicador?.resultado }} {{indicador.rango[0].unidad}}
+              </div>     
+            </div>
+          </span>
+          <span *ngIf="indicador?.resultado && indicador?.resultado >= indicador.rango[0].exitoso">
+            <div class="progress">
+              <div class="progress-bar progress-bar-striped progress-bar-success" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="10" 
+              [ngStyle]="{ 'width': indicador?.resultado + '%' }" >
+              {{ indicador?.resultado }} {{indicador.rango[0].unidad}}
+              </div>     
+            </div>
+          </span>
+        </div>
+      </div>
+    </div>
+    <button _ngcontent-kpr-c4="" class="btn btn-lg btn-primary btn-block" type="submit"> Hecho </button>
+  </form>
+</div>

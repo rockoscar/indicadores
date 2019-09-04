@@ -1,0 +1,88 @@
+<div class="container indi"> 
+  <div class="col-sm-10">
+   <div  class="form-signin">
+     <div class="panel panel-primary">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col col-lg-6">
+            <h2>Edita indicador</h2>
+          </div>
+          <div class="col col-lg-6" *ngIf="indicador.tipo != null">
+          <h3 align="right">Tipo: <strong>{{indicador.tipo}}</strong></h3>
+          </div>
+        </div>
+       </div>
+       <div class="panel-body">
+        <span *ngIf="indicador.tipo != 'muestra'">
+          <div class="form-label-group">
+            <input type="text" name="indi" #indi="ngModel" [(ngModel)]=indicador.indi class="form-control" placeholder= "Indicador"
+            readonly/>
+            <label for="indi" >Indicador</label>
+          </div>
+        </span>
+        <span *ngIf="indicador.tipo == 'muestra'">
+         <div class="form-label-group">
+          <input type="text" name="indi" #indi="ngModel" [(ngModel)]=indicador.indi class="form-control" placeholder= "Indicador" required/>
+          <label for="indi" >Indicador</label>
+         </div>
+        </span>
+        <div class="form-group">
+          <label>Proceso</label>
+          <select class="form-control" name="proceso" #proceso="ngModel" [(ngModel)]=indicador.proceso>
+            <option *ngFor="let proceso of procesos">{{proceso}}</option>
+          </select>    
+        </div>
+          <div class="form-label-group" *ngFor="let para of indicador.parametro">
+            <input type="text" name="p0" #p0="ngModel" [(ngModel)]=para.solicita class="form-control" placeholder= "Parametro" required/>
+            <label for="p0" >Parametro</label>
+            <div class="form-label-group" *ngIf="indicador.tipo == null">
+            <input type="number" name="v0" #v0="ngModel" [(ngModel)]=para.ingresa class="form-control" placeholder= "Parametro" required/>
+            <label for="v0" >Valor ingesado</label>
+            </div>
+          </div>
+          <div class="form-label-group"  *ngIf="indicador.tipo != null">
+            <input type="text" name="uni" #uni="ngModel" [(ngModel)]=rango.unidad class="form-control" placeholder= "Unidad de medida" required/>
+            <label for="uni" >Unidad de medida</label>
+          </div>
+          <div class="form-label-group">
+            <input type="date" name="uni" #uni="ngModel" [(ngModel)]=indicador.fecha class="form-control" placeholder= "Fecha" required/>
+            <label for="uni" >Fecha</label>
+          </div>
+          <h4 class="mb-3" *ngIf="indicador.tipo != null"><strong> Rangos</strong> (se deben poner los limites superiores en cada rango)</h4>        
+            <div class="row" *ngIf="indicador.tipo != null">
+              <div class="col-sm-4">
+                <div class="form-label-group">
+                <span class="badge btn-danger"><h5>Alerta</h5></span>
+                </div>
+                <div class="form-label-group">
+                        <input type="text" name="alert" #alert="ngModel" [(ngModel)]=rango.alerta class="form-control" placeholder= "Rango" required/>
+                        <label for="alert" >Rango</label>
+                    </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-label-group">
+              <span class="badge btn-warning"><h5>Advertencia</h5></span>
+                </div>
+                <div class="form-label-group">
+                        <input type="text" name="advertenci" #advertenci="ngModel" [(ngModel)]=rango.advertencia class="form-control" placeholder= "Rango" required/>
+                        <label for="advertenci" >Rango</label>
+                    </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-label-group">
+              <span class="badge btn-success"><h5>Cumplido</h5></span>
+                </div>
+                <div class="form-label-group">
+                        <input type="text" name="exitos" #exitos="ngModel" [(ngModel)]=rango.exitoso class="form-control" placeholder= "Rango" required/>
+                        <label for="exitos" >Rango</label>
+                    </div>
+              </div>
+            </div>
+          <div class="form-label-group" >
+          <button _ngcontent-kpr-c4="" class="btn btn-lg btn-primary btn-block" (click)="actualizaIndi()">Guarda</button>
+          </div>
+        </div>
+       </div>
+   </div>
+</div>
+</div>

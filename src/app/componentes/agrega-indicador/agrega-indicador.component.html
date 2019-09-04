@@ -1,0 +1,101 @@
+<div class="container indi">
+  <div class="alert alert-success" *ngIf="status == 'Exitoso'">
+        Registro exitoso, <a [routerLink]="['/login']"> inicia sesion.</a>
+    </div>
+    <!-- muestra mensaje si es fallido -->
+     <div class="alert alert-danger" *ngIf="status == 'Error'">
+        Registro erroneo
+    </div>
+    
+   <div  class="form-signin">
+     <div class="panel panel-primary">
+       <div class="panel-heading">
+     <h2>{{ titulo }}</h2>
+       </div>
+       <div class="panel-body">
+        <p>
+         
+         <div class="form-label-group">
+              <input type="text" name="indi" #indi="ngModel" [(ngModel)]=indicador.indi class="form-control" placeholder= "Indicador" required/>
+              <label for="indi" >Indicador</label>
+          </div>
+          <!--
+          <div class="form-label-group" >
+              <input type="text" name="proceso" #proceso="ngModel" [(ngModel)]=indicador.proceso class="form-control" placeholder= "Parametro" required/>
+              <label for="proceso" >Procesos</label>
+          </div>
+          -->
+          <div class="form-group">
+            <label>Proceso</label>
+              <select class="form-control" name="proceso" #proceso="ngModel" [(ngModel)]=indicador.proceso required  >
+                
+              <option *ngFor="let proceso of procesos">{{proceso}}</option>
+
+              </select>
+              
+          </div>
+
+            
+         <div class="form-label-group" >
+              <input type="text" name="p0" #p0="ngModel" [(ngModel)]=parametro.solicita class="form-control" placeholder= "Parametro" required/>
+              <label for="p0" >Parametro</label>
+          </div>
+
+          <div class="form-label-group" >
+          <button _ngcontent-kpr-c4="" class="btn btn-lg btn-primary btn-block" (click)="parame()">Agrega parametro</button>
+          </div>
+
+         <div class="form-label-group" *ngFor="let para of parametros">
+              <input type="text" name="p0" #p0="ngModel" [(ngModel)]= para.solicita class="form-control" placeholder= "Parametro" disabled/>
+              <label for="p0" >Parametro</label>
+          </div>
+
+         <div class="form-label-group">
+              <input type="text" name="uni" #uni="ngModel" [(ngModel)]=rango.unidad class="form-control" placeholder= "Unidad de medida" required/>
+              <label for="uni" >Unidad de medida</label>
+          </div>
+
+          <h4 class="mb-3"><strong> Rangos</strong> (se deben poner los limites superiores en cada rango)</h4>
+
+         
+         
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="form-label-group">
+      <span class="badge btn-danger"><h5>Alerta</h5></span>
+      </div>
+      <div class="form-label-group">
+              <input type="text" name="alert" #alert="ngModel" [(ngModel)]=rango.alerta class="form-control" placeholder= "Rango" required/>
+              <label for="alert" >Rango</label>
+          </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="form-label-group">
+     <span class="badge btn-warning"><h5>Advertencia</h5></span>
+      </div>
+      <div class="form-label-group">
+              <input type="text" name="advertenci" #advertenci="ngModel" [(ngModel)]=rango.advertencia class="form-control" placeholder= "Rango" required/>
+              <label for="advertenci" >Rango</label>
+          </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="form-label-group">
+     <span class="badge btn-success"><h5>Cumplido</h5></span>
+      </div>
+      <div class="form-label-group">
+              <input type="text" name="exitos" #exitos="ngModel" [(ngModel)]=rango.exitoso class="form-control" placeholder= "Rango" required/>
+              <label for="exitos" >Rango</label>
+          </div>
+    </div>
+  </div>
+  
+
+  
+
+            <div class="form-label-group" >
+          <button _ngcontent-kpr-c4="" class="btn btn-lg btn-primary btn-block" (click)="guardaIndi()">Guarda</button>
+          </div>
+            </div>
+       </div>
+   </div>
+</div>

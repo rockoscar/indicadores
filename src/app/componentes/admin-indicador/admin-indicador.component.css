@@ -1,0 +1,25 @@
+.filtros {
+  margin-top: 1%;
+}
+
+.table-responsive {
+    min-height: .01%;
+    overflow-x: auto;
+    max-height: 650px;
+    overflow-y: auto; 
+    height: 100%;
+    
+}
+.table-responsive th { 
+  position: sticky; 
+top: 0; 
+background: white;
+}
+
+.form-check-label{
+  margin-left: 10%;
+}
+
+.form-check{
+  margin-top: 10%;
+}
